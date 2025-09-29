@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>전문 머니패턴 이메일 미리보기</title>
+    <style>
+        body { 
+            font-family: 'Malgun Gothic', Arial, sans-serif; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .email-preview { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+            margin: 20px 0;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #f8f9fa;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .subject { 
+            font-size: 20px; 
+            font-weight: bold; 
+            color: #2c3e50; 
+            margin-bottom: 20px; 
+            text-align: center;
+        }
+        .greeting {
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        .main-result {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .pattern-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .pattern-combo {
+            font-size: 18px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        .section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #007bff;
+        }
+        .section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .section p {
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .ohang-section {
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .contact { 
+            background: #2c3e50;
+            color: white;
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-top: 25px; 
+        }
+        .contact h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        .buttons { 
+            margin: 20px 0; 
+            text-align: center; 
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        button { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            margin: 5px; 
+            border-radius: 25px; 
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .pallanggui { background: linear-gradient(135deg, #ff6b6b, #ffa8a8); }
+        .jilleo { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+        .wanbyeok { background: linear-gradient(135deg, #a8edea, #fed6e3); color: #333; }
+        .najalna { background: linear-gradient(135deg, #ffecd2, #fcb69f); color: #333; }
+        .jaengchwi { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .signature {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; color: white; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+            📊 전문 머니패턴 진단 결과 이메일 미리보기
+        </h1>
+        
+        <div class="buttons">
+            <p><strong>💼 머니패턴별 이메일 내용 확인:</strong></p>
+            <button class="pallanggui" onclick="showEmail('pallanggui')">팔랑귀형</button>
+            <button class="jilleo" onclick="showEmail('jilleo')">질러형</button>
+            <button class="wanbyeok" onclick="showEmail('wanbyeok')">완벽형</button>
+            <button class="najalna" onclick="showEmail('najalna')">나잘나형</button>
+            <button class="jaengchwi" onclick="showEmail('jaengchwi')">쟁취형</button>
+        </div>
+
+        <div class="email-preview">
+            <div class="header">
+                <div class="logo">💎 머니패턴 전문 진단센터</div>
+                <div style="color: #666; font-size: 14px;">Professional Money Pattern Analysis</div>
+            </div>
+            
+            <div class="subject" id="emailSubject">
+                홍길동님의 전문 머니패턴 진단 결과가 완성되었습니다 💼
+            </div>
+            
+            <div class="greeting">
+                안녕하세요 <strong>홍길동</strong>님,<br><br>
+                머니패턴 전문 진단을 완료해주셔서 감사합니다.<br>
+                과학적 분석을 통해 도출된 당신만의 고유한 머니패턴을 안내드립니다.
+            </div>
+            
+            <div class="main-result">
+                <div class="pattern-title" id="mainPattern">팔랑귀형</div>
+                <div class="pattern-combo" id="patternCombo">주기질: 팔랑귀 + 부기질: 질러</div>
+                <div style="font-size: 14px; opacity: 0.8;" id="patternCode">Pattern Code: PJ-2024</div>
+            </div>
+            
+            <div class="section">
+                <h3>📋 진단 결과 종합</h3>
+                <p id="mainDesc"><strong>팔랑귀형</strong>은 다양한 정보에 민감하게 반응하며, 새로운 투자 기회에 대한 호기심이 강한 유형입니다.</p>
+                <p id="strengthDesc"><strong>주요 강점:</strong> 빠른 정보 습득력, 트렌드 민감성, 네트워킹 능력</p>
+                <p id="cautionDesc"><strong>주의사항:</strong> 과도한 정보 의존, 충동적 투자 결정, 일관성 부족 위험</p>
+            </div>
+            
+            <div class="section">
+                <h3>🎯 맞춤형 투자 전략</h3>
+                <div id="strategyContent">
+                    <p><strong>✓ 권장 투자 스타일:</strong> 분산형 포트폴리오 + 정기적 리밸런싱</p>
+                    <p><strong>✓ 적합한 상품:</strong> 인덱스 펀드, ETF, 로보어드바이저</p>
+                    <p><strong>✓ 투자 빈도:</strong> 월 1회 정기 투자 (감정적 투자 방지)</p>
+                    <p><strong>✓ 위험 관리:</strong> 투자 금액의 사전 한도 설정 필수</p>
+                </div>
+            </div>
+            
+            <div class="ohang-section">
+                <h3 style="color: white; margin-bottom: 15px;">🔮 오행(五行) 보조 분석</h3>
+                <p id="ohangDesc" style="color: white; opacity: 0.95;">
+                    <strong id="ohangElement">수(水)</strong> 기질이 강하여 변화에 유연하게 적응하는 특성을 보입니다. 
+                    상생 관계인 <strong id="supportElement">목(木)</strong>과의 조화로 성장 잠재력이 높습니다.
+                </p>
+            </div>
+            
+            <div class="section">
+                <h3>📈 3개월 실행 로드맵</h3>
+                <div id="roadmapContent">
+                    <p><strong>1개월차:</strong> 투자 성향 재확인 및 기본 포트폴리오 구축</p>
+                    <p><strong>2개월차:</strong> 정기 투자 시스템 안착 및 성과 모니터링</p>
+                    <p><strong>3개월차:</strong> 첫 리밸런싱 실행 및 장기 전략 수립</p>
+                </div>
+            </div>
+            
+            <div class="contact">
+                <h3>📞 전문가 상담 안내</h3>
+                <p style="color: white;">
+                    더 정밀한 포트폴리오 설계와 개인별 맞춤 상담을 원하시면 언제든 연락주세요.<br><br>
+                    <strong>📧 이메일:</strong> habin0781@naver.com<br>
+                    <strong>☎️ 전화상담:</strong> 02)848-7000<br>
+                    <strong>⏰ 상담시간:</strong> 평일 09:00 ~ 18:00
+                </p>
+            </div>
+            
+            <div class="signature">
+                <p>
+                    전문적인 분석과 지속적인 관리로<br>
+                    당신의 성공적인 자산 증식을 지원하겠습니다.<br><br>
+                    <strong>머니패턴 전문 진단센터 팀 드림</strong><br>
+                    <span style="font-size: 12px; color: #999;">Professional Money Pattern Analysis Center</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const patterns = {
+            pallanggui: {
+                mainPattern: '팔랑귀형',
+                combo: '주기질: 팔랑귀 + 부기질: 질러',
+                code: 'PQ-2024',
+                mainDesc: '팔랑귀형은 다양한 정보에 민감하게 반응하며, 새로운 투자 기회에 대한 호기심이 강한 유형입니다.',
+                strength: '빠른 정보 습득력, 트렌드 민감성, 네트워킹 능력',
+                caution: '과도한 정보 의존, 충동적 투자 결정, 일관성 부족 위험',
+                strategy: {
+                    style: '분산형 포트폴리오 + 정기적 리밸런싱',
+                    products: '인덱스 펀드, ETF, 로보어드바이저',
+                    frequency: '월 1회 정기 투자 (감정적 투자 방지)',
+                    risk: '투자 금액의 사전 한도 설정 필수'
+                },
+                ohang: {
+                    element: '수(水)',
+                    support: '목(木)',
+                    desc: '변화에 유연하게 적응하는 특성을 보입니다. 상생 관계인 목(木)과의 조화로 성장 잠재력이 높습니다.'
+                },
+                roadmap: {
+                    month1: '투자 성향 재확인 및 기본 포트폴리오 구축',
+                    month2: '정기 투자 시스템 안착 및 성과 모니터링', 
+                    month3: '첫 리밸런싱 실행 및 장기 전략 수립'
+                }
+            },
+            jilleo: {
+                mainPattern: '질러형',
+                combo: '주기질: 질러 + 부기질: 나잘나',
+                code: 'JN-2024',
+                mainDesc: '질러형은 즉흥적이고 충동적인 투자 성향을 가지며, 단기 수익에 집중하는 경향이 강한 유형입니다.',
+                strength: '빠른 결단력, 기회 포착 능력, 적극적 투자 마인드',
+                caution: '감정적 투자, 과도한 레버리지 사용, 손실 시 패닉 매도 위험',
+                strategy: {
+                    style: '자동 투자 시스템 + 감정 배제 전략',
+                    products: '적립식 펀드, 타겟 데이트 펀드, 연금저축',
+                    frequency: '자동 이체 설정으로 월 2회 분할 투자',
+                    risk: '감정적 매매 방지를 위한 쿨링오프 기간 설정'
+                },
+                ohang: {
+                    element: '화(火)',
+                    support: '토(土)',
+                    desc: '열정적이고 활동적인 특성이 강합니다. 토(土)의 안정성과 결합하여 균형잡힌 투자가 가능합니다.'
+                },
+                roadmap: {
+                    month1: '자동 투자 시스템 구축 및 감정 통제 훈련',
+                    month2: '정기 투자 습관 정착 및 충동 매매 방지',
+                    month3: '중장기 목표 재설정 및 안정적 수익 확인'
+                }
+            },
+            wanbyeok: {
+                mainPattern: '완벽형',
+                combo: '주기질: 완벽 + 부기질: 쟁취',
+                code: 'WC-2024',
+                mainDesc: '완벽형은 치밀한 계획과 철저한 분석을 바탕으로 투자하며, 위험을 최소화하려는 성향이 강한 유형입니다.',
+                strength: '체계적 분석력, 리스크 관리 능력, 장기적 관점',
+                caution: '과도한 신중함으로 기회 상실, 완벽주의로 인한 스트레스, 결정 지연',
+                strategy: {
+                    style: '코어-새틀라이트 전략 + 정밀 자산배분',
+                    products: '블루칩 주식, 우량 채권, 리츠(REITs)',
+                    frequency: '분기별 정밀 리뷰 및 연간 리밸런싱',
+                    risk: '과도한 분석 방지를 위한 의사결정 기한 설정'
+                },
+                ohang: {
+                    element: '금(金)',
+                    support: '수(水)',
+                    desc: '체계적이고 완성도가 높은 특성을 보입니다. 수(水)의 유연성과 조화하여 적응력이 향상됩니다.'
+                },
+                roadmap: {
+                    month1: '정밀 자산배분 모델 구축 및 코어 포트폴리오 완성',
+                    month2: '새틀라이트 전략 실행 및 성과 모니터링',
+                    month3: '전체 포트폴리오 최적화 및 장기 전략 고도화'
+                }
+            },
+            najalna: {
+                mainPattern: '나잘나형',
+                combo: '주기질: 나잘나 + 부기질: 팔랑귀',
+                code: 'NP-2024',
+                mainDesc: '나잘나형은 자신감이 높고 적극적인 투자 성향을 보이며, 성과에 대한 욕구가 강한 유형입니다.',
+                strength: '강한 자신감, 적극적 투자 의지, 높은 성취 욕구',
+                caution: '과신으로 인한 과도한 위험 감수, 손실 인정 어려움, 독단적 투자 결정',
+                strategy: {
+                    style: '성장-가치 혼합 전략 + 단계별 위험 관리',
+                    products: '성장주 펀드, 섹터 ETF, 글로벌 주식',
+                    frequency: '월 1회 성과 점검 및 분기별 전략 조정',
+                    risk: '겸손한 투자 마인드 유지 및 전문가 의견 수렴'
+                },
+                ohang: {
+                    element: '화(火)',
+                    support: '목(木)',
+                    desc: '열정적이고 외향적인 성격이 두드러집니다. 목(木)의 성장 에너지와 결합하여 역동적 투자가 가능합니다.'
+                },
+                roadmap: {
+                    month1: '성장-가치 균형 포트폴리오 구축',
+                    month2: '성과 추적 시스템 구축 및 겸손 투자 실천',
+                    month3: '전문가 피드백 반영 및 투자 철학 정립'
+                }
+            },
+            jaengchwi: {
+                mainPattern: '쟁취형',
+                combo: '주기질: 쟁취 + 부기질: 완벽',
+                code: 'CW-2024',
+                mainDesc: '쟁취형은 목표 달성에 대한 강한 의지를 가지고 있으며, 공격적이면서도 전략적인 투자를 선호하는 유형입니다.',
+                strength: '강한 목표 의식, 전략적 사고, 높은 실행력',
+                caution: '과도한 목표 설정, 스트레스 과부하, 단기 성과에 집착',
+                strategy: {
+                    style: '목표 기반 투자 + 단계별 달성 전략',
+                    products: '액티브 펀드, 테마 ETF, 개별 주식 투자',
+                    frequency: '목표별 단계 달성 시점에 맞춘 유동적 투자',
+                    risk: '현실적 목표 설정 및 중간 성취 인정하기'
+                },
+                ohang: {
+                    element: '목(木)',
+                    support: '화(火)',
+                    desc: '성장과 확장을 추구하는 강한 의지를 보입니다. 화(火)의 열정과 결합하여 역동적 성장이 가능합니다.'
+                },
+                roadmap: {
+                    month1: '구체적 투자 목표 설정 및 단계별 계획 수립',
+                    month2: '목표 달성 진도 체크 및 전략 미세 조정',
+                    month3: '중간 성과 평가 및 다음 단계 목표 설정'
+                }
+            }
+        };
+
+        function showEmail(patternType) {
+            const pattern = patterns[patternType];
+            const userName = "홍길동";
+            
+            // 메인 정보 업데이트
+            document.getElementById('emailSubject').textContent = 
+                `${userName}님의 전문 머니패턴 진단 결과가 완성되었습니다 💼`;
+            document.getElementById('mainPattern').textContent = pattern.mainPattern;
+            document.getElementById('patternCombo').textContent = pattern.combo;
+            document.getElementById('patternCode').textContent = `Pattern Code: ${pattern.code}`;
+            
+            // 상세 정보 업데이트
+            document.getElementById('mainDesc').innerHTML = 
+                `<strong>${pattern.mainPattern}</strong>은 ${pattern.mainDesc}`;
+            document.getElementById('strengthDesc').innerHTML = 
+                `<strong>주요 강점:</strong> ${pattern.strength}`;
+            document.getElementById('cautionDesc').innerHTML = 
+                `<strong>주의사항:</strong> ${pattern.caution}`;
+            
+            // 전략 정보 업데이트
+            document.getElementById('strategyContent').innerHTML = `
+                <p><strong>✓ 권장 투자 스타일:</strong> ${pattern.strategy.style}</p>
+                <p><strong>✓ 적합한 상품:</strong> ${pattern.strategy.products}</p>
+                <p><strong>✓ 투자 빈도:</strong> ${pattern.strategy.frequency}</p>
+                <p><strong>✓ 위험 관리:</strong> ${pattern.strategy.risk}</p>
+            `;
+            
+            // 오행 정보 업데이트
+            document.getElementById('ohangElement').textContent = pattern.ohang.element;
+            document.getElementById('supportElement').textContent = pattern.ohang.support;
+            document.getElementById('ohangDesc').innerHTML = 
+                `<strong>${pattern.ohang.element}</strong> 기질이 강하여 ${pattern.ohang.desc}`;
+            
+            // 로드맵 정보 업데이트
+            document.getElementById('roadmapContent').innerHTML = `
+                <p><strong>1개월차:</strong> ${pattern.roadmap.month1}</p>
+                <p><strong>2개월차:</strong> ${pattern.roadmap.month2}</p>
+                <p><strong>3개월차:</strong> ${pattern.roadmap.month3}</p>
+            `;
+        }
+
+        // 페이지 로드 시 기본값으로 팔랑귀형 표시
+        showEmail('pallanggui');
+    </script>
+</body>
+</html>

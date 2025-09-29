@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>🧠 무의식 머니패턴 과학적 진단 결과</title>
+    <style>
+        body { 
+            font-family: 'Malgun Gothic', Arial, sans-serif; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); 
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .email-preview { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+            margin: 20px 0;
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .congratulation {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 25px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .unconscious-importance {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+        .pattern-result {
+            background: linear-gradient(135deg, #3498db, #5dade2);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .scientific-basis {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        .theory-section {
+            background: linear-gradient(135deg, #e8f4fd, #f0f8ff);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #3498db;
+        }
+        .potential-section {
+            background: linear-gradient(135deg, #fff3cd, #fef9e7);
+            color: #856404;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #f39c12;
+        }
+        .improvement-section {
+            background: linear-gradient(135deg, #d4edda, #e8f5e8);
+            color: #155724;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        .contact { 
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            padding: 25px; 
+            border-radius: 10px; 
+            margin-top: 25px; 
+            text-align: center;
+        }
+        .buttons { 
+            margin: 20px 0; 
+            text-align: center; 
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        button { 
+            background: linear-gradient(135deg, #3498db, #5dade2);
+            color: white; 
+            border: none; 
+            padding: 12px 24px; 
+            margin: 5px; 
+            border-radius: 25px; 
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .pallanggui { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .jilleo { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .wanbyeok { background: linear-gradient(135deg, #27ae60, #229954); color: white; }
+        .najalna { background: linear-gradient(135deg, #8e44ad, #7d3c98); }
+        .jaengchwi { background: linear-gradient(135deg, #2980b9, #21618c); }
+        .signature {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            color: #2c3e50;
+        }
+        .highlight {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .theory-box {
+            background: white;
+            border: 2px solid #3498db;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; color: white; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+            🧠 무의식 머니패턴 과학적 진단 결과
+        </h1>
+        
+        <div class="buttons">
+            <p><strong>🔬 과학적 머니패턴별 진단 결과 확인:</strong></p>
+            <button class="pallanggui" onclick="showEmail('pallanggui')">팔랑귀형</button>
+            <button class="jilleo" onclick="showEmail('jilleo')">질러형</button>
+            <button class="wanbyeok" onclick="showEmail('wanbyeok')">완벽형</button>
+            <button class="najalna" onclick="showEmail('najalna')">나잘나형</button>
+            <button class="jaengchwi" onclick="showEmail('jaengchwi')">쟁취형</button>
+        </div>
+
+        <div class="email-preview">
+            <div class="header">
+                <div class="logo">🧠 무의식 머니패턴 연구센터</div>
+                <div class="subtitle">Unconscious Money Pattern Research Center</div>
+                <div style="font-size: 12px; margin-top: 10px; opacity: 0.8;">
+                    행동경제학 × 인지심리학 × 정신분석학 기반
+                </div>
+            </div>
+            
+            <div class="congratulation" id="emailSubject">
+                🎉 홍길동님의 무의식 머니패턴 분석이 완료되었습니다
+            </div>
+            
+            <div style="font-size: 16px; margin-bottom: 25px; line-height: 1.8; color: #2c3e50;">
+                안녕하세요 <strong>홍길동</strong>님,<br><br>
+                과학적 분석을 통한 당신만의 고유한 <strong>무의식 머니패턴</strong>이 도출되었습니다.<br>
+                이 결과는 당신의 재정적 성공 가능성을 크게 높일 수 있는 중요한 정보입니다.
+            </div>
+            
+            <div class="unconscious-importance">
+                <h3 style="color: white; margin-bottom: 15px;">🧠 왜 무의식 머니패턴이 중요한가?</h3>
+                <p style="color: white; line-height: 1.6; margin-bottom: 15px;">
+                    <strong>연구 결과</strong>에 따르면 우리의 금융 의사결정 중 <strong>95%</strong>는 무의식에서 이루어집니다.<br>
+                    의식적 계획보다 <strong>무의식 패턴</strong>이 실제 투자 성과에 더 큰 영향을 미칩니다.
+                </p>
+                <div class="theory-box" style="background: rgba(255,255,255,0.9); color: #2c3e50;">
+                    <strong>📚 이론적 근거:</strong> 카너먼의 행동경제학, 융의 무의식 이론, 털러의 멘탈 어카운팅
+                </div>
+            </div>
+            
+            <div class="pattern-result">
+                <div style="font-size: 24px; font-weight: bold; margin-bottom: 15px;" id="mainPattern">팔랑귀형</div>
+                <div style="font-size: 16px; opacity: 0.9;" id="patternCombo">주기질: 팔랑귀 + 부기질: 질러</div>
+                <div style="font-size: 14px; opacity: 0.8; margin-top: 10px;" id="patternCode">Pattern ID: PQ-2024</div>
+            </div>
+            
+            <div class="scientific-basis">
+                <h3 style="color: #2c3e50; margin-bottom: 15px;">🔬 과학적 분석 결과</h3>
+                <div id="scientificAnalysis">
+                    <div class="highlight">
+                        <p><strong>무의식 특성:</strong> 정보에 대한 높은 민감도와 빠른 반응 패턴을 보입니다.</p>
+                    </div>
+                    <div class="highlight">
+                        <p><strong>행동 패턴:</strong> 다양한 정보원을 통해 투자 결정을 내리는 경향이 강합니다.</p>
+                    </div>
+                    <div class="highlight">
+                        <p><strong>위험 인식:</strong> 정보 과부하로 인한 분석 마비 현상에 주의가 필요합니다.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="theory-section">
+                <h3 style="color: #2c3e50; margin-bottom: 15px;">📖 이론적 배경</h3>
+                <div id="theoreticalBasis">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                        <div class="theory-box">
+                            <strong>🧠 행동경제학</strong><br>
+                            <small>정보 편향과 휴리스틱 패턴 분석</small>
+                        </div>
+                        <div class="theory-box">
+                            <strong>🔍 인지심리학</strong><br>
+                            <small>의사결정 과정의 인지적 메커니즘</small>
+                        </div>
+                        <div class="theory-box">
+                            <strong>💭 정신분석학</strong><br>
+                            <small>무의식적 동기와 방어기제</small>
+                        </div>
+                        <div class="theory-box">
+                            <strong>📊 금융심리학</strong><br>
+                            <small>투자 행동의 심리적 요인</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="potential-section">
+                <h3 style="color: #856404; margin-bottom: 15px;">🌟 당신의 잠재력</h3>
+                <div id="potentialContent">
+                    <p><strong>핵심 강점:</strong> 풍부한 정보 수집 능력과 트렌드 감지력</p>
+                    <p><strong>성장 영역:</strong> 정보 필터링과 우선순위 설정 능력</p>
+                    <p><strong>발전 방향:</strong> 체계적 분석틀 구축으로 투자 성과 향상 가능</p>
+                </div>
+            </div>
+            
+            <div class="improvement-section">
+                <h3 style="color: #155724; margin-bottom: 15px;">📈 맞춤형 개선 전략</h3>
+                <div id="improvementStrategy">
+                    <div style="margin-bottom: 15px;">
+                        <strong>1단계:</strong> 무의식 패턴 인식 훈련 (1-2개월)
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <strong>2단계:</strong> 체계적 의사결정 프로세스 구축 (3-6개월)
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <strong>3단계:</strong> 패턴 최적화 및 성과 모니터링 (6개월 이상)
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #e8f4fd; border: 2px solid #2196f3; padding: 20px; border-radius: 10px; margin: 25px 0;">
+                <h3 style="color: #1976d2; margin-bottom: 15px; text-align: center;">💡 중요한 발견</h3>
+                <p style="color: #1976d2; text-align: center; font-size: 16px; line-height: 1.6;">
+                    당신의 <strong>무의식 머니패턴</strong>을 이해하고 활용하면,<br>
+                    기존 투자 방식보다 <strong>더 일관되고 안정적인</strong> 결과를 얻을 수 있습니다.<br>
+                    이는 단순한 기법이 아닌 <strong>과학적으로 검증된 접근법</strong>입니다.
+                </p>
+            </div>
+            
+            <div class="contact">
+                <h3 style="margin-bottom: 15px;">🎯 전문가 심층 상담 안내</h3>
+                <p style="font-size: 16px; margin-bottom: 20px; line-height: 1.6;">
+                    무의식 머니패턴을 더 깊이 이해하고 실제 투자에 활용하고 싶으시다면,<br>
+                    <strong>전문 상담</strong>을 통해 개인별 맞춤 전략을 받아보세요.
+                </p>
+                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                    <p><strong>📧 전문 상담 문의:</strong> habin0781@naver.com</p>
+                    <p><strong>☎️ 상담 예약:</strong> 02)848-7000</p>
+                    <p><strong>⏰ 상담 시간:</strong> 평일 09:00 ~ 18:00</p>
+                </div>
+                <p style="font-size: 14px; margin-top: 15px; opacity: 0.9;">
+                    * 모든 상담은 <strong>과학적 근거</strong>와 <strong>개인 맞춤 분석</strong>을 기반으로 진행됩니다.
+                </p>
+            </div>
+            
+            <div class="signature">
+                <p style="font-size: 16px; margin-bottom: 10px; color: #2c3e50;">
+                    과학적 접근으로 당신의 재정적 성공을 지원합니다.
+                </p>
+                <p style="font-size: 14px; color: #2c3e50;">
+                    <strong>무의식 머니패턴 연구센터</strong><br>
+                    <span style="font-size: 12px; opacity: 0.7;">"Science-Based Financial Psychology"</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const patterns = {
+            pallanggui: {
+                mainPattern: '팔랑귀형',
+                combo: '주기질: 팔랑귀 + 부기질: 질러',
+                code: 'PQ-2024',
+                scientific: {
+                    unconscious: '정보에 대한 높은 민감도와 빠른 반응 패턴을 보입니다.',
+                    behavior: '다양한 정보원을 통해 투자 결정을 내리는 경향이 강합니다.',
+                    risk: '정보 과부하로 인한 분석 마비 현상에 주의가 필요합니다.'
+                },
+                potential: {
+                    strength: '풍부한 정보 수집 능력과 트렌드 감지력',
+                    growth: '정보 필터링과 우선순위 설정 능력',
+                    direction: '체계적 분석틀 구축으로 투자 성과 향상 가능'
+                },
+                improvement: {
+                    step1: '무의식 패턴 인식 훈련 (1-2개월)',
+                    step2: '정보 필터링 시스템 구축 (3-6개월)',
+                    step3: '체계적 투자 프로세스 최적화 (6개월 이상)'
+                }
+            },
+            jilleo: {
+                mainPattern: '질러형',
+                combo: '주기질: 질러 + 부기질: 나잘나',
+                code: 'JN-2024',
+                scientific: {
+                    unconscious: '즉흥적 의사결정과 감정 기반 판단 패턴이 강화되어 있습니다.',
+                    behavior: '기회가 보이면 빠르게 행동하는 실행력 중심의 투자 성향을 보입니다.',
+                    risk: '충동적 결정으로 인한 일관성 부족과 감정적 매매에 주의가 필요합니다.'
+                },
+                potential: {
+                    strength: '뛰어난 기회 포착력과 빠른 실행 능력',
+                    growth: '감정 조절과 체계적 계획 수립 능력',
+                    direction: '자동화 시스템 도입으로 감정적 투자 방지 가능'
+                },
+                improvement: {
+                    step1: '감정 인식 및 조절 훈련 (1-2개월)',
+                    step2: '자동 투자 시스템 구축 (2-4개월)',
+                    step3: '장기 목표 기반 투자 습관 정착 (6개월 이상)'
+                }
+            },
+            wanbyeok: {
+                mainPattern: '완벽형',
+                combo: '주기질: 완벽 + 부기질: 쟁취',
+                code: 'WC-2024',
+                scientific: {
+                    unconscious: '높은 통제 욕구와 완벽주의 성향이 투자 결정에 강하게 작용합니다.',
+                    behavior: '철저한 분석과 계획을 통해 위험을 최소화하려는 패턴을 보입니다.',
+                    risk: '과도한 완벽주의로 인한 기회 상실과 결정 지연에 주의가 필요합니다.'
+                },
+                potential: {
+                    strength: '체계적 분석력과 뛰어난 리스크 관리 능력',
+                    growth: '유연성과 적절한 위험 수용 능력',
+                    direction: '단계적 위험 증가 전략으로 수익성 향상 가능'
+                },
+                improvement: {
+                    step1: '완벽주의 인식 및 유연성 훈련 (1-3개월)',
+                    step2: '단계별 위험 수용 전략 구축 (3-9개월)',
+                    step3: '최적화된 포트폴리오 운영 (9개월 이상)'
+                }
+            },
+            najalna: {
+                mainPattern: '나잘나형',
+                combo: '주기질: 나잘나 + 부기질: 팔랑귀',
+                code: 'NP-2024',
+                scientific: {
+                    unconscious: '높은 자신감과 성취 욕구가 투자 행동의 주요 동력으로 작용합니다.',
+                    behavior: '적극적이고 공격적인 투자를 선호하며 높은 수익을 추구하는 패턴을 보입니다.',
+                    risk: '과신으로 인한 과도한 위험 감수와 손실 인정 어려움에 주의가 필요합니다.'
+                },
+                potential: {
+                    strength: '강한 성취 동기와 적극적 투자 의지',
+                    growth: '겸손함과 객관적 시각 유지 능력',
+                    direction: '전문가 조언 활용으로 균형잡힌 투자 가능'
+                },
+                improvement: {
+                    step1: '자기 인식 및 겸손 마인드 훈련 (1-2개월)',
+                    step2: '객관적 피드백 시스템 구축 (3-6개월)',
+                    step3: '균형잡힌 포트폴리오 운영 (6개월 이상)'
+                }
+            },
+            jaengchwi: {
+                mainPattern: '쟁취형',
+                combo: '주기질: 쟁취 + 부기질: 완벽',
+                code: 'CW-2024',
+                scientific: {
+                    unconscious: '강한 목표 지향성과 성취 의지가 모든 투자 결정을 주도합니다.',
+                    behavior: '명확한 목표 설정과 단계적 달성을 위한 체계적 접근을 선호합니다.',
+                    risk: '과도한 목표 설정으로 인한 스트레스와 단기 성과 집착에 주의가 필요합니다.'
+                },
+                potential: {
+                    strength: '강한 목표 의식과 지속적 실행력',
+                    growth: '유연성과 중간 성취 인정 능력',
+                    direction: '현실적 목표 설정으로 지속 가능한 성과 달성 가능'
+                },
+                improvement: {
+                    step1: '현실적 목표 설정 훈련 (1-2개월)',
+                    step2: '단계별 성취 인정 시스템 구축 (3-6개월)',
+                    step3: '장기 지속 가능한 투자 전략 완성 (6개월 이상)'
+                }
+            }
+        };
+
+        function showEmail(patternType) {
+            const pattern = patterns[patternType];
+            const userName = "홍길동";
+            
+            // 메인 정보 업데이트
+            document.getElementById('emailSubject').textContent = 
+                `🎉 ${userName}님의 무의식 머니패턴 분석이 완료되었습니다`;
+            document.getElementById('mainPattern').textContent = pattern.mainPattern;
+            document.getElementById('patternCombo').textContent = pattern.combo;
+            document.getElementById('patternCode').textContent = `Pattern ID: ${pattern.code}`;
+            
+            // 과학적 분석 결과 업데이트
+            document.getElementById('scientificAnalysis').innerHTML = `
+                <div class="highlight">
+                    <p><strong>무의식 특성:</strong> ${pattern.scientific.unconscious}</p>
+                </div>
+                <div class="highlight">
+                    <p><strong>행동 패턴:</strong> ${pattern.scientific.behavior}</p>
+                </div>
+                <div class="highlight">
+                    <p><strong>위험 인식:</strong> ${pattern.scientific.risk}</p>
+                </div>
+            `;
+            
+            // 잠재력 정보 업데이트
+            document.getElementById('potentialContent').innerHTML = `
+                <p><strong>핵심 강점:</strong> ${pattern.potential.strength}</p>
+                <p><strong>성장 영역:</strong> ${pattern.potential.growth}</p>
+                <p><strong>발전 방향:</strong> ${pattern.potential.direction}</p>
+            `;
+            
+            // 개선 전략 업데이트
+            document.getElementById('improvementStrategy').innerHTML = `
+                <div style="margin-bottom: 15px;">
+                    <strong>1단계:</strong> ${pattern.improvement.step1}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>2단계:</strong> ${pattern.improvement.step2}
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>3단계:</strong> ${pattern.improvement.step3}
+                </div>
+            `;
+        }
+
+        // 페이지 로드 시 기본값으로 팔랑귀형 표시
+        showEmail('pallanggui');
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15문항 약식 머니패턴 진단 - 오행 이론 기반</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans text-gray-800 bg-gradient-to-br from-green-50 to-blue-50">
+    <!-- 헤더 -->
+    <header class="bg-white shadow-sm border-b border-gray-100">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-yin-yang text-2xl text-green-600"></i>
+                    <h1 class="text-2xl font-bold text-gray-900">오행 머니패턴 약식진단</h1>
+                </div>
+                <a href="index.html" class="text-gray-600 hover:text-green-600 transition-colors">
+                    <i class="fas fa-home mr-2"></i>홈으로
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 max-w-4xl">
+        <!-- 진행상황 표시 -->
+        <div class="mb-8">
+            <div class="bg-white rounded-2xl p-6 shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-bold text-gray-900">진단 진행상황</h2>
+                    <span class="text-sm text-gray-600">
+                        <span id="current-question">1</span> / 15
+                    </span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div id="progress-bar" class="bg-gradient-to-r from-green-500 to-blue-500 h-3 rounded-full transition-all duration-500" style="width: 6.67%"></div>
+                </div>
+                <div class="mt-2 text-center">
+                    <span id="current-element" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-green-100 text-green-800">
+                        <i class="fas fa-tree mr-1"></i>목(木) - 성장 패턴
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 질문 카드 -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-6">
+            <div class="text-center mb-8">
+                <div class="text-6xl mb-4" id="question-icon">🌱</div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2" id="question-category">목(木) 패턴 - 성장과 확장</h3>
+                <p class="text-gray-600" id="question-subtitle">새로운 기회와 성장에 대한 당신의 성향을 알아봅시다</p>
+            </div>
+
+            <div class="mb-8">
+                <h4 class="text-xl font-semibold text-gray-900 mb-6 text-center leading-relaxed" id="question-text">
+                    새로운 투자 기회가 생겼을 때 나는?
+                </h4>
+
+                <div class="space-y-4">
+                    <label class="flex items-center p-4 rounded-xl bg-gray-50 hover:bg-blue-50 cursor-pointer transition-colors border-2 border-transparent hover:border-blue-200">
+                        <input type="radio" name="current-answer" value="1" class="w-5 h-5 text-blue-600 mr-4">
+                        <span class="text-gray-700 flex-1">즉시 뛰어들어 새로운 기회를 잡는다</span>
+                    </label>
+                    <label class="flex items-center p-4 rounded-xl bg-gray-50 hover:bg-blue-50 cursor-pointer transition-colors border-2 border-transparent hover:border-blue-200">
+                        <input type="radio" name="current-answer" value="2" class="w-5 h-5 text-blue-600 mr-4">
+                        <span class="text-gray-700 flex-1">신중하게 검토한 후 결정한다</span>
+                    </label>
+                    <label class="flex items-center p-4 rounded-xl bg-gray-50 hover:bg-blue-50 cursor-pointer transition-colors border-2 border-transparent hover:border-blue-200">
+                        <input type="radio" name="current-answer" value="3" class="w-5 h-5 text-blue-600 mr-4">
+                        <span class="text-gray-700 flex-1">안정성을 우선시하여 보수적으로 접근한다</span>
+                    </label>
+                    <label class="flex items-center p-4 rounded-xl bg-gray-50 hover:bg-blue-50 cursor-pointer transition-colors border-2 border-transparent hover:border-blue-200">
+                        <input type="radio" name="current-answer" value="4" class="w-5 h-5 text-blue-600 mr-4">
+                        <span class="text-gray-700 flex-1">다른 사람들의 의견을 많이 들어본다</span>
+                    </label>
+                    <label class="flex items-center p-4 rounded-xl bg-gray-50 hover:bg-blue-50 cursor-pointer transition-colors border-2 border-transparent hover:border-blue-200">
+                        <input type="radio" name="current-answer" value="5" class="w-5 h-5 text-blue-600 mr-4">
+                        <span class="text-gray-700 flex-1">기회를 놓치는 것을 두려워하며 망설인다</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 네비게이션 버튼 -->
+            <div class="flex justify-between items-center">
+                <button id="prev-btn" onclick="previousQuestion()" 
+                        class="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-semibold transition-colors disabled:opacity-50" 
+                        disabled>
+                    <i class="fas fa-chevron-left mr-2"></i>이전
+                </button>
+                
+                <div class="text-center">
+                    <p class="text-sm text-gray-500 mb-2">선택 후 자동 진행됩니다</p>
+                </div>
+                
+                <button id="next-btn" onclick="nextQuestion()" 
+                        class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors disabled:opacity-50" 
+                        disabled>
+                    다음<i class="fas fa-chevron-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 오행 정보 패널 -->
+        <div class="bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 rounded-2xl p-6">
+            <h4 class="text-lg font-bold text-gray-900 mb-3 text-center">
+                <i class="fas fa-info-circle mr-2"></i>오행(五行) 머니패턴이란?
+            </h4>
+            <p class="text-gray-700 text-center leading-relaxed">
+                동양철학의 오행 이론을 바탕으로 한 혁신적인 머니패턴 분석법입니다.<br>
+                <strong>목화토금수(木火土金水)</strong> 각 원소의 특성과 <strong>상생상극</strong> 관계를 통해<br>
+                당신만의 고유한 재정 성향과 최적의 투자 전략을 찾아드립니다.
+            </p>
+            <div class="flex justify-center mt-4 space-x-6 text-sm">
+                <span class="text-green-600"><i class="fas fa-tree mr-1"></i>목(木)</span>
+                <span class="text-red-600"><i class="fas fa-fire mr-1"></i>화(火)</span>
+                <span class="text-yellow-600"><i class="fas fa-mountain mr-1"></i>토(土)</span>
+                <span class="text-gray-600"><i class="fas fa-coins mr-1"></i>금(金)</span>
+                <span class="text-blue-600"><i class="fas fa-tint mr-1"></i>수(水)</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/simple-diagnosis.js"></script>
+</body>
+</html>

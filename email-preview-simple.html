@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>이메일 미리보기</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .email-preview { background: white; padding: 30px; border-radius: 10px; max-width: 600px; margin: 0 auto; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .subject { font-size: 18px; font-weight: bold; color: #333; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #eee; }
+        .content { line-height: 1.6; color: #555; }
+        .highlight { background: #e8f5e8; padding: 15px; border-left: 4px solid #28a745; margin: 15px 0; }
+        .contact { background: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 20px; }
+        .buttons { margin: 20px 0; text-align: center; }
+        button { background: #007bff; color: white; border: none; padding: 8px 15px; margin: 5px; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .wood { background: #28a745; }
+        .fire { background: #dc3545; }
+        .earth { background: #ffc107; color: #333; }
+        .metal { background: #6c757d; }
+        .water { background: #17a2b8; }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; color: #333;">📧 고객 이메일 미리보기</h1>
+    
+    <div class="buttons">
+        <p><strong>패턴별 이메일 내용 보기:</strong></p>
+        <button class="wood" onclick="showEmail('wood')">목(木) - 성장형</button>
+        <button class="fire" onclick="showEmail('fire')">화(火) - 열정형</button>
+        <button class="earth" onclick="showEmail('earth')">토(土) - 안정형</button>
+        <button class="metal" onclick="showEmail('metal')">금(金) - 완벽형</button>
+        <button class="water" onclick="showEmail('water')">수(水) - 적응형</button>
+    </div>
+
+    <div class="email-preview">
+        <div class="subject" id="emailSubject">
+            홍길동님의 머니패턴 진단 결과가 완성되었습니다! 🎯
+        </div>
+        
+        <div class="content" id="emailContent">
+            <p>안녕하세요 <strong>홍길동</strong>님,</p>
+            
+            <p>머니패턴 진단을 완료해주셔서 감사합니다!</p>
+            
+            <div class="highlight">
+                <h3>🎯 당신의 머니패턴</h3>
+                <p><strong id="patternName">목(木) - 성장형</strong></p>
+            </div>
+            
+            <div class="highlight">
+                <h3>📊 결과 요약</h3>
+                <p id="patternDesc">새로운 기회를 적극적으로 추구하는 성장 지향적 투자자</p>
+            </div>
+            
+            <div class="highlight">
+                <h3>💡 더 자세한 분석을 원하시면?</h3>
+                <p>전문가 1:1 상담을 통해 맞춤형 투자 전략을 받아보세요.</p>
+            </div>
+            
+            <div class="contact">
+                <h3>📞 상담 문의</h3>
+                <p>
+                    이메일: <strong>habin0781@naver.com</strong><br>
+                    전화: <strong>02)848-7000</strong>
+                </p>
+            </div>
+            
+            <hr style="margin: 30px 0; border: none; border-top: 1px solid #eee;">
+            
+            <p style="color: #888; font-size: 14px;">
+                감사합니다.<br>
+                <strong>머니패턴 팀 드림</strong>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const patterns = {
+            wood: {
+                name: '목(木) - 성장형',
+                desc: '새로운 기회를 적극적으로 추구하는 성장 지향적 투자자'
+            },
+            fire: {
+                name: '화(火) - 열정형', 
+                desc: '직감과 열정으로 투자하는 감성적 투자자'
+            },
+            earth: {
+                name: '토(土) - 안정형',
+                desc: '안정성을 최우선으로 하는 보수적 투자자'
+            },
+            metal: {
+                name: '금(金) - 완벽형',
+                desc: '체계적이고 완벽한 계획을 세우는 논리적 투자자'
+            },
+            water: {
+                name: '수(水) - 적응형',
+                desc: '변화에 유연하게 적응하는 지혜로운 투자자'
+            }
+        };
+
+        function showEmail(patternType) {
+            const pattern = patterns[patternType];
+            const userName = "홍길동";
+            
+            document.getElementById('emailSubject').textContent = 
+                `${userName}님의 머니패턴 진단 결과가 완성되었습니다! 🎯`;
+            
+            document.getElementById('patternName').textContent = pattern.name;
+            document.getElementById('patternDesc').textContent = pattern.desc;
+        }
+    </script>
+</body>
+</html>

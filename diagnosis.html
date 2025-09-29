@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>백만장자 머니패턴 심리진단 - 진단 진행</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans text-gray-800 bg-gradient-to-br from-blue-50 to-white min-h-screen">
+    <!-- 헤더 -->
+    <header class="bg-white shadow-sm border-b border-gray-100">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-chart-line text-2xl text-blue-600"></i>
+                    <h1 class="text-2xl font-bold text-gray-900">머니패턴</h1>
+                </div>
+                <button onclick="goHome()" class="text-gray-600 hover:text-blue-600 transition-colors">
+                    <i class="fas fa-home mr-1"></i>
+                    홈으로
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 진행 바 -->
+    <div class="bg-white border-b border-gray-100">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm text-gray-600">진행률</span>
+                <span class="text-sm text-blue-600 font-semibold" id="progress-text">1 / 20</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-3">
+                <div id="progress-bar" class="bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all duration-500 ease-out" style="width: 5%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 메인 진단 영역 -->
+    <main class="py-8 px-6 flex-1">
+        <div class="container mx-auto max-w-4xl">
+            <!-- 시작 화면 -->
+            <div id="start-screen" class="text-center">
+                <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 mb-8 border border-gray-100">
+                    <div class="mb-8">
+                        <i class="fas fa-brain text-6xl text-blue-600 mb-6 animate-pulse"></i>
+                        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                            <span class="block sm:inline">백만장자 머니패턴</span> 
+                            <span class="block sm:inline">진단</span>
+                        </h2>
+                        <p class="text-base md:text-lg text-gray-600 mb-8 leading-relaxed px-4 sm:px-0">
+                            <span class="block sm:inline">총 20개의 질문을 통해</span> 
+                            <span class="block sm:inline">당신만의 머니패턴을 발견하세요.</span><br class="sm:hidden">
+                            <span class="block sm:inline">각 질문에 1점(전혀 그렇지 않다)부터</span> 
+                            <span class="block sm:inline">5점(매우 그렇다)까지</span> 
+                            <span class="block sm:inline">솔직하게 답변해 주세요.</span>
+                        </p>
+                    </div>
+                    
+                    <!-- 안내사항 -->
+                    <div class="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-6 mb-8 text-left">
+                        <h3 class="font-semibold text-gray-900 mb-3 flex items-center">
+                            <i class="fas fa-lightbulb text-blue-600 mr-2"></i>
+                            진단 안내
+                        </h3>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li>• 정확한 결과를 위해 솔직하게 답변해 주세요</li>
+                            <li>• 너무 오래 고민하지 말고 직감적으로 선택해 주세요</li>
+                            <li>• 각 질문은 1점(전혀)부터 5점(매우)까지 선택 가능합니다</li>
+                            <li>• 모든 질문 완료 시 상세한 분석 결과를 받아보실 수 있습니다</li>
+                        </ul>
+                    </div>
+
+                    <button onclick="startDiagnosis()" 
+                            class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-10 py-4 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-play mr-2"></i>
+                        진단 시작하기
+                    </button>
+                </div>
+            </div>
+
+            <!-- 질문 화면 -->
+            <div id="question-screen" class="hidden">
+                <div class="bg-white rounded-3xl shadow-xl p-6 md:p-12 border border-gray-100 min-h-[500px] flex flex-col justify-center">
+                    <!-- 질문 헤더 -->
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+                            <i class="fas fa-question text-2xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-lg text-gray-500 mb-2" id="question-number">질문 1</h3>
+                    </div>
+
+                    <!-- 질문 내용 -->
+                    <div class="text-center mb-12 px-4 sm:px-0">
+                        <p id="question-text" class="text-lg md:text-xl lg:text-2xl font-medium text-gray-800 leading-relaxed max-w-3xl mx-auto">
+                            <!-- 질문이 여기에 표시됩니다 -->
+                        </p>
+                    </div>
+
+                    <!-- 점수 선택 버튼들 -->
+                    <div class="mb-8 px-4 sm:px-0">
+                        <div class="flex justify-between items-center text-xs sm:text-sm text-gray-500 mb-4">
+                            <span>전혀 그렇지 않다</span>
+                            <span>매우 그렇다</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-2 md:gap-4 max-w-2xl mx-auto">
+                            <button class="score-btn" onclick="selectScore(1)" data-score="1">
+                                <div class="score-circle">1</div>
+                                <span class="score-label">전혀</span>
+                            </button>
+                            <button class="score-btn" onclick="selectScore(2)" data-score="2">
+                                <div class="score-circle">2</div>
+                                <span class="score-label">별로</span>
+                            </button>
+                            <button class="score-btn" onclick="selectScore(3)" data-score="3">
+                                <div class="score-circle">3</div>
+                                <span class="score-label">보통</span>
+                            </button>
+                            <button class="score-btn" onclick="selectScore(4)" data-score="4">
+                                <div class="score-circle">4</div>
+                                <span class="score-label">그렇다</span>
+                            </button>
+                            <button class="score-btn" onclick="selectScore(5)" data-score="5">
+                                <div class="score-circle">5</div>
+                                <span class="score-label">매우</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 네비게이션 -->
+                    <div class="flex justify-between items-center mt-8">
+                        <button id="prev-btn" onclick="previousQuestion()" 
+                                class="flex items-center space-x-2 text-gray-500 hover:text-gray-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                                disabled>
+                            <i class="fas fa-chevron-left"></i>
+                            <span>이전</span>
+                        </button>
+                        
+                        <div class="text-center">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mx-auto animate-pulse"></div>
+                        </div>
+                        
+                        <button id="next-btn" 
+                                class="flex items-center space-x-2 text-gray-400 cursor-not-allowed"
+                                disabled>
+                            <span>답변을 선택해 주세요</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 완료 화면 -->
+            <div id="completion-screen" class="hidden text-center">
+                <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100">
+                    <div class="mb-8">
+                        <i class="fas fa-check-circle text-6xl text-green-500 mb-6 animate-bounce"></i>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">진단 완료!</h2>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            모든 질문에 답변해 주셔서 감사합니다.<br>
+                            당신만의 머니패턴 분석 결과를 확인해 보세요.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-xl p-6 mb-8">
+                        <div class="flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-pie text-3xl text-green-600 mr-3"></i>
+                            <h3 class="text-xl font-bold text-gray-900">분석 완료</h3>
+                        </div>
+                        <p class="text-gray-700">당신의 답변을 바탕으로 맞춤형 머니패턴 분석이 완료되었습니다.</p>
+                    </div>
+
+                    <button onclick="viewResults()" 
+                            class="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-bold px-10 py-4 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        <i class="fas fa-chart-line mr-2"></i>
+                        결과 확인하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-900 text-white py-8 mt-auto">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <i class="fas fa-chart-line text-xl text-blue-400"></i>
+                <h3 class="text-xl font-bold">머니패턴</h3>
+            </div>
+            <p class="text-gray-400 text-sm">
+                © 2024 머니패턴. 모든 권리 보유.
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/diagnosis.js"></script>
+</body>
+</html>

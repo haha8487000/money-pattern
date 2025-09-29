@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>백만장자 머니패턴 심리진단 - 결과 분석</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans text-gray-800 bg-gradient-to-br from-blue-50 to-white min-h-screen">
+    <!-- 헤더 -->
+    <header class="bg-white shadow-sm border-b border-gray-100">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-chart-line text-2xl text-blue-600"></i>
+                    <h1 class="text-2xl font-bold text-gray-900">머니패턴</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="retakeTest()" class="text-gray-600 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-redo mr-1"></i>
+                        다시 진단
+                    </button>
+                    <button onclick="goHome()" class="text-gray-600 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-home mr-1"></i>
+                        홈으로
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 결과 영역 -->
+    <main class="py-8 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <!-- 결과 헤더 -->
+            <div class="text-center mb-12 px-4 sm:px-0">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                    <span class="block sm:inline">당신의 백만장자</span> 
+                    <span class="block sm:inline">머니패턴</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600">
+                    <span class="block sm:inline">개인 맞춤형 금융 심리</span> 
+                    <span class="block sm:inline">분석 결과</span>
+                </p>
+            </div>
+
+            <!-- 주요 결과 카드 (HOOK) -->
+            <div id="main-result-card" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-3xl p-8 md:p-12 mb-12 shadow-2xl">
+                <div class="text-center">
+                    <div id="pattern-icon" class="text-6xl mb-6">💼</div>
+                    <h3 id="pattern-type" class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">분석 중...</h3>
+                    <p id="pattern-description" class="text-base md:text-lg lg:text-xl opacity-90 leading-relaxed mb-6 px-4 sm:px-0">
+                        <!-- 동적으로 채워집니다 -->
+                    </p>
+                    <div id="pattern-hook" class="bg-white/20 rounded-2xl p-6 backdrop-blur-sm">
+                        <p id="hook-text" class="text-lg font-medium">
+                            <!-- HOOK 텍스트가 여기에 표시됩니다 -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSIGHT 섹션 -->
+            <div id="insight-section" class="bg-white rounded-3xl shadow-xl p-8 md:p-12 mb-12 border border-gray-100">
+                <div class="text-center mb-8">
+                    <i class="fas fa-lightbulb text-4xl text-yellow-500 mb-4"></i>
+                    <h4 class="text-3xl font-bold text-gray-900 mb-4">💡 핵심 인사이트</h4>
+                </div>
+                <div id="insight-content" class="space-y-6">
+                    <!-- 동적으로 채워집니다 -->
+                </div>
+            </div>
+
+            <!-- 분석 차트 섹션 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- 패턴 분석 차트 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h4 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-chart-radar text-blue-600 mr-3"></i>
+                        패턴 분석
+                    </h4>
+                    <div style="height: 300px;">
+                        <canvas id="personalityChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 위험 수용도 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h4 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-shield-alt text-blue-600 mr-3"></i>
+                        위험 수용도
+                    </h4>
+                    <div style="height: 300px;">
+                        <canvas id="riskChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEEP-DIVE 섹션 -->
+            <div id="deep-dive-section" class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-3xl p-8 md:p-12 mb-12 border border-gray-200">
+                <div class="text-center mb-8">
+                    <i class="fas fa-microscope text-4xl text-blue-600 mb-4"></i>
+                    <h4 class="text-3xl font-bold text-gray-900 mb-4">🔍 심층 분석</h4>
+                </div>
+                <div id="deep-dive-content">
+                    <!-- 동적으로 채워집니다 -->
+                </div>
+            </div>
+
+            <!-- ACTION 섹션 -->
+            <div id="action-section" class="bg-gradient-to-r from-green-500 to-blue-600 text-white rounded-3xl p-8 md:p-12 mb-12 shadow-2xl">
+                <div class="text-center mb-8">
+                    <i class="fas fa-rocket text-4xl mb-4 opacity-90"></i>
+                    <h4 class="text-3xl font-bold mb-4">🚀 실행 계획</h4>
+                    <p class="text-lg opacity-90">당신의 머니패턴에 맞는 구체적인 실행 방안</p>
+                </div>
+                <div id="action-content">
+                    <!-- 동적으로 채워집니다 -->
+                </div>
+            </div>
+
+            <!-- 세부 분석 결과 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- 투자 성향 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-trending-up text-4xl text-blue-600 mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-900">투자 성향</h4>
+                    </div>
+                    <div id="investment-style" class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">보수성</span>
+                            <div class="flex items-center">
+                                <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 80%"></div>
+                                </div>
+                                <span class="text-sm font-semibold text-blue-600">80%</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">적극성</span>
+                            <div class="flex items-center">
+                                <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 30%"></div>
+                                </div>
+                                <span class="text-sm font-semibold text-green-600">30%</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">장기 관점</span>
+                            <div class="flex items-center">
+                                <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                    <div class="bg-purple-500 h-2 rounded-full" style="width: 70%"></div>
+                                </div>
+                                <span class="text-sm font-semibold text-purple-600">70%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 소비 패턴 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-credit-card text-4xl text-green-600 mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-900">소비 패턴</h4>
+                    </div>
+                    <div id="spending-pattern" class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">계획성</span>
+                            <div class="flex items-center">
+                                <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                                <span class="text-sm font-semibold text-blue-600">85%</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">충동성</span>
+                            <div class="flex items-center">
+                                <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                    <div class="bg-red-500 h-2 rounded-full" style="width: 25%"></div>
+                                </div>
+                                <span class="text-sm font-semibold text-red-600">25%</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">절약성</span>
+                            <div class="flex items-center">
+                                <div class="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                                <span class="text-sm font-semibold text-green-600">75%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 강점 & 개선점 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-balance-scale text-4xl text-purple-600 mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-900">강점 & 개선점</h4>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <h5 class="text-sm font-bold text-green-600 mb-2 flex items-center">
+                                <i class="fas fa-thumbs-up mr-1"></i> 강점
+                            </h5>
+                            <ul id="strengths" class="text-sm text-gray-700 space-y-1">
+                                <!-- 동적으로 채워집니다 -->
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-bold text-orange-600 mb-2 flex items-center">
+                                <i class="fas fa-arrow-up mr-1"></i> 개선점
+                            </h5>
+                            <ul id="improvements" class="text-sm text-gray-700 space-y-1">
+                                <!-- 동적으로 채워집니다 -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 액션 버튼들 -->
+            <div class="text-center space-y-4 md:space-y-0 md:space-x-6 md:flex md:justify-center mb-12">
+                <button onclick="shareResults()" 
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full md:w-auto">
+                    <i class="fas fa-share-alt mr-2"></i>
+                    결과 공유하기
+                </button>
+                
+                <button onclick="retakeTest()" 
+                        class="bg-gray-600 hover:bg-gray-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full md:w-auto">
+                    <i class="fas fa-redo mr-2"></i>
+                    다시 진단받기
+                </button>
+                
+                <button onclick="goHome()" 
+                        class="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full md:w-auto">
+                    <i class="fas fa-home mr-2"></i>
+                    홈으로 가기
+                </button>
+            </div>
+
+            <!-- 이메일 결과 받기 섹션 -->
+            <div class="bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-700 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
+                <!-- 배경 장식 -->
+                <div class="absolute inset-0 bg-white/5 backdrop-blur-sm"></div>
+                <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+                <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
+                
+                <div class="relative z-10">
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-4">
+                            <i class="fas fa-envelope text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4">
+                            📧 상세한 진단 결과를 이메일로 받아보세요!
+                        </h3>
+                        <p class="text-lg opacity-90 max-w-2xl mx-auto">
+                            20문항 정밀 머니패턴 분석 결과와 개인 맞춤 투자 가이드를<br>
+                            이메일로 전달해드립니다. 전문 상담도 함께 신청하실 수 있어요!
+                        </p>
+                    </div>
+
+                    <!-- 이메일 폼 -->
+                    <form id="emailForm" class="max-w-md mx-auto space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2" for="user_name">
+                                <i class="fas fa-user mr-1"></i> 성함 *
+                            </label>
+                            <input type="text" 
+                                   id="user_name" 
+                                   name="user_name" 
+                                   required
+                                   class="w-full px-4 py-3 rounded-lg bg-white/90 text-gray-800 placeholder-gray-500 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white"
+                                   placeholder="실명을 입력해주세요">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold mb-2" for="user_email">
+                                <i class="fas fa-envelope mr-1"></i> 이메일 주소 *
+                            </label>
+                            <input type="email" 
+                                   id="user_email" 
+                                   name="user_email" 
+                                   required
+                                   class="w-full px-4 py-3 rounded-lg bg-white/90 text-gray-800 placeholder-gray-500 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white"
+                                   placeholder="결과를 받을 이메일 주소">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold mb-2" for="user_phone">
+                                <i class="fas fa-phone mr-1"></i> 연락처 (선택사항)
+                            </label>
+                            <input type="tel" 
+                                   id="user_phone" 
+                                   name="user_phone"
+                                   class="w-full px-4 py-3 rounded-lg bg-white/90 text-gray-800 placeholder-gray-500 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white"
+                                   placeholder="010-0000-0000">
+                        </div>
+
+                        <div class="flex items-center space-x-3 bg-white/10 rounded-lg p-4">
+                            <input type="checkbox" 
+                                   id="consultation_request" 
+                                   name="consultation_request"
+                                   class="w-5 h-5 text-purple-600 rounded border-white/30 focus:ring-white/50">
+                            <label for="consultation_request" class="text-sm font-medium">
+                                <i class="fas fa-handshake mr-1"></i>
+                                📞 전문 상담사와 1:1 상담 희망 (02)848-7000
+                            </label>
+                        </div>
+
+                        <div class="flex items-start space-x-3 text-sm">
+                            <input type="checkbox" 
+                                   id="privacyAgree" 
+                                   required
+                                   class="w-4 h-4 mt-0.5 text-purple-600 rounded border-white/30 focus:ring-white/50">
+                            <label for="privacyAgree" class="opacity-90 leading-relaxed">
+                                개인정보 수집 및 이용에 동의합니다. 
+                                (진단 결과 발송 및 상담 목적으로만 사용되며, 외부 제공되지 않습니다)
+                            </label>
+                        </div>
+
+                        <button type="submit" 
+                                id="sendEmailBtn"
+                                class="w-full bg-white text-purple-600 font-bold px-8 py-4 rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            📧 결과 받기
+                        </button>
+                    </form>
+
+                    <!-- 상태 메시지들 -->
+                    <div id="emailStatus" class="hidden mt-6 text-center">
+                        <div class="inline-flex items-center justify-center">
+                            <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3"></div>
+                            <span class="font-semibold">이메일 발송 중...</span>
+                        </div>
+                    </div>
+
+                    <div id="emailSuccess" class="hidden mt-6 text-center bg-green-500/20 border border-green-300 rounded-lg p-4">
+                        <i class="fas fa-check-circle text-green-300 text-xl mr-2"></i>
+                        <span class="font-semibold">성공적으로 발송되었습니다!</span>
+                        <p class="text-sm mt-2 opacity-90">
+                            입력하신 이메일로 상세한 진단 결과가 발송되었습니다.<br>
+                            상담 신청하신 경우 1-2일 내 연락드리겠습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-900 text-white py-12 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-6">
+                <i class="fas fa-chart-line text-2xl text-blue-400"></i>
+                <h3 class="text-2xl font-bold">머니패턴</h3>
+            </div>
+            
+            <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+                과학적이고 체계적인 금융 심리 분석을 통해<br>
+                더 나은 금융 의사결정을 지원합니다.
+            </p>
+            
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-500">
+                    © 2024 머니패턴. 모든 권리 보유.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/results.js"></script>
+</body>
+</html>
